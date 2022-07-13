@@ -3,6 +3,80 @@ Formatversion: 1
 
 ***Element: JOB
 
+; Microsoft Dynamics AX Job: XY_Warenkorb_3 nicht geladen
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #XY_Warenkorb_3
+    #static void XY_Warenkorb_3(Args _args)
+    #{
+    #    XY_Warenkorb    clsWarenkorb = XY_Warenkorb::construct();
+    #    XY_Artikel      clsArtikel;
+    #    Set             clsSet = new Set(Types::Class);
+    #    ;
+    #    clsArtikel = XY_Artikel::construct();
+    #    clsArtikel.parmName('Papier,DIN-A4, 80gr/m2, 500 Blatt Paket');
+    #    clsArtikel.parmMenge(3.0);
+    #    clsArtikel.parmEinheit('Pakiete');
+    #    clsArtikel.parmPreis(3.5);
+    #    clsSet.add(clsArtikel);
+    #    clsArtikel = null;
+    #
+    #    clsArtikel = XY_Artikel::construct();
+    #    clsArtikel.parmName('Druckertinte');
+    #    clsArtikel.parmMenge(2.0);
+    #    clsArtikel.parmEinheit('Patrone');
+    #    clsArtikel.parmPreis(17.50);
+    #    clsSet.add(clsArtikel);
+    #    clsArtikel = null;
+    #
+    #    clsArtikel = XY_Artikel::construct();
+    #    clsArtikel.parmName('Briefumschläge DIN lang, 20 Stück Paket');
+    #    clsArtikel.parmMenge(1);
+    #    clsArtikel.parmEinheit('Pakiete');
+    #    clsArtikel.parmPreis(2.0);
+    #    clsSet.add(clsArtikel);
+    #    clsArtikel = null;
+    #
+    #    info(clsWarenkorb.checkOut(clsSet));
+    #}
+  ENDSOURCE
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: XY_Warenkorb_2 nicht geladen
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #XY_Warenkorb_2
+    #static void XY_Warenkorb_2(Args _args)
+    #{
+    #    XY_Warenkorb    clsWarenkorb = XY_Warenkorb::construct();
+    #    XY_Artikel      clsArtikel;
+    #    Set             clsSet = new Set(Types::Class);
+    #    ;
+    #    clsArtikel = XY_Artikel::construct();
+    #    clsArtikel.parmName('Papier,DIN-A4, 80gr/m2, 500 Blatt Paket');
+    #    clsArtikel.parmMenge(3.0);
+    #    clsArtikel.parmEinheit('Pakiete');
+    #    clsArtikel.parmPreis(3.5);
+    #    clsSet.add(clsArtikel);
+    #    clsArtikel = null;
+    #
+    #    clsArtikel = XY_Artikel::construct();
+    #    clsArtikel.parmName('Druckertinte');
+    #    clsArtikel.parmMenge(2.0);
+    #    clsArtikel.parmEinheit('Patrone');
+    #    clsArtikel.parmPreis(17.50);
+    #    clsSet.add(clsArtikel);
+    #    clsArtikel = null;
+    #
+    #    info(clsWarenkorb.checkOut(clsSet));
+    #}
+  ENDSOURCE
+
+***Element: JOB
+
 ; Microsoft Dynamics AX Job: XY_Warenkorb_1 nicht geladen
 ; --------------------------------------------------------------------------------
   JOBVERSION 1
@@ -218,6 +292,20 @@ Formatversion: 1
         PreventEditProperties #No
       ENDPROPERTIES
       
+      BEGINNODE
+        FILETYPE 0
+        UTILTYPE 5
+        UTILOBJECTID 0
+        NODETYPE 215
+        NAME #XY_Warenkorb_3
+      ENDNODE
+      BEGINNODE
+        FILETYPE 0
+        UTILTYPE 5
+        UTILOBJECTID 0
+        NODETYPE 215
+        NAME #XY_Warenkorb_2
+      ENDNODE
       BEGINNODE
         FILETYPE 0
         UTILTYPE 5
