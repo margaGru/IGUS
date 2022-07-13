@@ -1,0 +1,257 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: XY_Warenkorb_1 nicht geladen
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #XY_Warenkorb_1
+    #static void XY_Warenkorb_1(Args _args)
+    #{
+    #    XY_Warenkorb    clsWarenkorb = XY_Warenkorb::construct();
+    #    XY_Artikel      clsArtikel;
+    #    Set             clsSet = new Set(Types::Class);
+    #    ;
+    #    clsArtikel = XY_Artikel::construct();
+    #    clsArtikel.parmName('Druckertinte');
+    #    clsArtikel.parmMenge(1.0);
+    #    clsArtikel.parmEinheit('Patrone');
+    #    clsArtikel.parmPreis(17.50);
+    #    clsSet.add(clsArtikel);
+    #
+    #    info(clsWarenkorb.checkOut(clsSet));
+    #}
+  ENDSOURCE
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: XY_Warenkorb nicht geladen
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #XY_Warenkorb
+    PROPERTIES
+      Name                #XY_Warenkorb
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #checkOut
+        #public str checkOut(Set _clsSet)
+        #{
+        #    str             strReturn;
+        #    SetEnumerator   clsEnumerator;
+        #    XY_Artikel      clsArtikel;
+        #    ;
+        #    //ins Warenkorb
+        #    clsEnumerator = _clsSet.getEnumerator();
+        #    while(clsEnumerator.moveNext())
+        #    {
+        #        clsArtikel = clsEnumerator.current();
+        #        this.add(clsArtikel);
+        #    }
+        #
+        #    //Ausgabe
+        #    clsEnumerator = clsSet.getEnumerator();
+        #    while(clsEnumerator.moveNext())
+        #    {
+        #        clsArtikel = clsEnumerator.current();
+        #        if(strlen(strReturn) > 0)
+        #        {
+        #            strReturn += '\n\r';
+        #        }
+        #        strReturn += clsArtikel.toString();
+        #    }
+        #    return strReturn;
+        #}
+      ENDSOURCE
+      SOURCE #add
+        #public void add(XY_Artikel _clsArtikel)
+        #{
+        #    ;
+        #    clsSet.add(_clsArtikel);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #void new()
+        #{
+        #    ;
+        #    clsSet = new Set(Types::Class);
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static XY_Warenkorb construct()
+        #{
+        #    return new XY_Warenkorb();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #public class XY_Warenkorb
+        #{
+        #    Set     clsSet;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: XY_Artikel nicht geladen
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #XY_Artikel
+    PROPERTIES
+      Name                #XY_Artikel
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #new
+        #void new()
+        #{
+        #    ;
+        #    strWaehrung = 'EUR';
+        #}
+      ENDSOURCE
+      SOURCE #toString
+        #public str toString()
+        #{
+        #    return strFmt('%1 %2 %3 %4 %5',strName,realMenge,strEinheit,realPreis,strWaehrung);
+        #}
+      ENDSOURCE
+      SOURCE #parmWaehrun
+        #public Str parmWaehrun(Str _strWaehrung = strWaehrung)
+        #{
+        #    ;
+        #    strWaehrung = _strWaehrung;
+        #
+        #    return strWaehrung;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmEinheit
+        #public Str parmEinheit(Str _strEinheit = strEinheit)
+        #{
+        #    ;
+        #    strEinheit = _strEinheit;
+        #
+        #    return strEinheit;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmPreis
+        #public Real parmPreis(Real _realPreis = realPreis)
+        #{
+        #    ;
+        #    realPreis = _realPreis;
+        #
+        #    return realPreis;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmMenge
+        #public Real parmMenge(Real _realMenge = realMenge)
+        #{
+        #    ;
+        #    realMenge = _realMenge;
+        #
+        #    return realMenge;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmName
+        #public Str parmName(Str _strName = strName)
+        #{
+        #    ;
+        #    strName = _strName;
+        #
+        #    return strName;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #public static XY_Artikel construct()
+        #{
+        #    return new XY_Artikel();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #public class XY_Artikel
+        #{
+        #    str         strName;
+        #    real        realMenge;
+        #    real        realPreis;
+        #    str         strEinheit;
+        #    str         strWaehrung;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: PRN
+
+; Microsoft Dynamics AX Project : IGUS unloaded
+; --------------------------------------------------------------------------------
+  PROJECTVERSION 2
+  
+  PROJECT #IGUS
+   SHARED
+  PROPERTIES
+    Name                #IGUS
+  ENDPROPERTIES
+  
+    PROJECTCLASS ProjectNode
+    GROUP #Jobs
+      PROPERTIES
+        Name                #Jobs
+        ProjectGroupType    #Jobs
+        GroupMask           #
+        PreventEditProperties #No
+      ENDPROPERTIES
+      
+      BEGINNODE
+        FILETYPE 0
+        UTILTYPE 5
+        UTILOBJECTID 0
+        NODETYPE 215
+        NAME #XY_Warenkorb_1
+      ENDNODE
+      ENDGROUP
+      
+    GROUP #Classes
+      PROPERTIES
+        Name                #Classes
+        ProjectGroupType    #Classes
+        GroupMask           #
+        PreventEditProperties #No
+      ENDPROPERTIES
+      
+      BEGINNODE
+        FILETYPE 0
+        UTILTYPE 45
+        UTILOBJECTID 50420
+        NODETYPE 329
+        NAME #XY_Warenkorb
+      ENDNODE
+      BEGINNODE
+        FILETYPE 0
+        UTILTYPE 45
+        UTILOBJECTID 50419
+        NODETYPE 329
+        NAME #XY_Artikel
+      ENDNODE
+      ENDGROUP
+      
+  ENDPROJECT
+  
+
+***Element: END
